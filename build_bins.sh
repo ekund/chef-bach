@@ -62,16 +62,29 @@ fi
 FILES="jmxtrans-20120525-210643-4e956b1144.zip $FILES"
 
 # Fetch Kafka Tar
-for version in 0.8.1 0.8.1.1; do
+for version in 0.8.1.1 0.8.2.2; do
   mkdir -p kafka/${version}/
   if ! [[ -f kafka/${version}/kafka_2.9.2-${version}.tgz ]]; then
     pushd kafka/${version}/
     while ! $(file kafka_2.9.2-${version}.tgz | grep -q 'gzip compressed data'); do
-      $CURL -O -L https://archive.apache.org/dist/kafka/${version}/kafka_2.9.2-${version}.tgz
+      $CURL -O -L http://mirrors.ocf.berkeley.edu/apache/kafka/${version}/kafka_2.9.2-${version}.tgz
     done
     popd
   fi
   FILES="kafka_2.9.2-${version}.tgz $FILES"
+done
+
+# Fetch Kafka Tar
+for version in 0.9.0.1; do
+  mkdir -p kafka/${version}/
+  if ! [[ -f kafka/${version}/kafka_2.11-${version}.tgz ]]; then
+    pushd kafka/${version}/
+    while ! $(file kafka_2.11-${version}.tgz | grep -q 'gzip compressed data'); do
+      $CURL -O -L http://mirrors.ocf.berkeley.edu/apache/kafka/${version}/kafka_2.11-${version}.tgz
+    done
+    popd
+  fi
+  FILES="kafka_2.11-${version}.tgz $FILES"
 done
 
 # Fetch Java Tar
