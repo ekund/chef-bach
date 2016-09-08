@@ -11,4 +11,4 @@ message_str="@$recipient: Please attend to severity $severity issue with $trigge
 
 sendemail -f <%= node["bcpc"]["hadoop"]["zabbix"]["mail_from"] %> \
   -s <%= node['bcpc']['hadoop']['zabbix']['mail_smtp_server_port'] %> \
-  -t $recipient -u $subject_str -m $message_str
+  -t eiserovich1@bloomberg.net -u $subject_str -m $message_str
