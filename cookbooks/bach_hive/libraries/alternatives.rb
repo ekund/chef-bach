@@ -8,7 +8,7 @@ module AlternativesProvider
   # This is the resource class for the provider.  It contains the declaration
   class Resource < Chef::Resource
     include Poise
-    provides(:alternatives)
+    provides(:bach_hive_poise_alternatives)
     actions(:create)
 
     attribute(:component, :kind_of => String)
@@ -18,7 +18,7 @@ module AlternativesProvider
   # This is the Provider class for the RP.  It contains the implementation
   class Provider < Chef::Provider
     include Poise
-    provides(:alternatives)
+    provides(:bach_hive_poise_alternatives)
 
     def check_status(c)
       failmsg = "command failed: #{c.stdout}, #{c.stderr}"

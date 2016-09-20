@@ -7,7 +7,7 @@
     recursive true
   end
 
-  bach_hive_alternatives "update-#{w}-conf-alternatives" do
+  bach_hive_poise_alternatives "update-#{w}-conf-alternatives" do
     action :create
     component w
     link_name node.chef_environment
