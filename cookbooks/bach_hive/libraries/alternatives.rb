@@ -1,14 +1,9 @@
-require 'poise'
-require 'chef/resource'
-require 'chef/provider'
-
 # This is a module for a RP that can run update-alternatives
 # This makes sure that /etc/alternatives is set correctly
-module AlternativesProvider
+class Chef
   # This is the resource class for the provider.  It contains the declaration
-  class Resource < Chef::Resource
+  class Resource::BachHivePoiseAlternatives < Resource
     include Poise
-    provides(:bach_hive_poise_alternatives)
     actions(:create)
 
     attribute(:component, :kind_of => String)
@@ -16,13 +11,12 @@ module AlternativesProvider
   end
 
   # This is the Provider class for the RP.  It contains the implementation
-  class Provider < Chef::Provider
+  class Provider::BachHivePoiseAlternatives < Chef::Provider
     include Poise
-    provides(:bach_hive_poise_alternatives)
 
     def check_status(c)
       failmsg = "command failed: #{c.stdout}, #{c.stderr}"
-      fail failmsg unless c.status.success
+      fail failmsg unless c.status.success?
       c.exitstatus
     end
 
