@@ -5,7 +5,7 @@ describe 'bach_hive::default' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new(:platform => 'ubuntu',
                                :version => '12.04',
-                               :step_into => ['alternatives']) do |node|
+                               :step_into => ['bach_hive_poise_alternatives']) do |node|
         env = Chef::Environment.new
         allow(node).to receive(:chef_environment).and_return('Test-Laptop')
 
@@ -22,7 +22,7 @@ describe 'bach_hive::default' do
         )
       end
       it 'calls the lwrp' do
-        expect(chef_run).to update_alternatives("update-#{w}-conf-alternatives")
+        expect(chef_run).to bach_hive_poise_alternatives("update-#{w}-conf-alternatives")
       end
     end
   end
