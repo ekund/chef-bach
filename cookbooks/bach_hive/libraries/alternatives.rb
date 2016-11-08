@@ -19,7 +19,7 @@ class Chef
 
       def check_status(c)
         failmsg = "command failed: #{c.stdout}, #{c.stderr}"
-        fail failmsg unless c.status.success?
+        raise failmsg unless c.status.success?
         c.exitstatus
       end
 
